@@ -1,9 +1,38 @@
 Rails.application.routes.draw do
+   get 'posts/index'
+
+  # get 'posts/create'
+
+  # get 'sessions/new'
+
+  # get 'sessions/create'
+
+  # get 'sessions/destroy'
+
+  # get 'users/create'
+
+  # get 'users/new'
+
+  #first url, issue get request that will render template. => controller
+  get "/login" => "sessions#new"
+  post "/login" => "sessions#create"
+  get "/logout" => "sessions#destroy"
+
+  get "/signup" => "users#new"
+  post "/users" => "users#create"
+
+  get "/" => "posts#index"  # do i need this one?
+  get "/posts/new" => "posts#new"
+  post "/posts" => "posts#create"
+
+
+  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+   root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
