@@ -2,12 +2,18 @@
 <html>
 <head>
   <title>HackerNews</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% if @current_user %>
+	signed in as <%= @current_user.email %> | <%= link_to "logout", "/logout" %>
+<% else %>
+	<%= link_to "login", "/login" %> | <%= link_to "signup", "/signup" %>
+<% end %>
+<%= render "partials/flash" %>
 <%= yield %>
 
 </body>

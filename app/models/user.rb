@@ -1,10 +1,13 @@
 class User < ActiveRecord::Base
 	validates :email,
 	confirmation: true,
-	presence: true, # this needs to exist when user is created
+	uniqueness: true,
+	presence: true # this needs to exist when user is created
 	
 
-	validates_uniqueness_of :email, case_sensitive: false
+	# validates_uniqueness_of :email
+
+	# {case_sensitive: false} is not working
 	 # how unique do you want entry to be
 
 	validates_presence_of :password, on: :create
@@ -13,7 +16,8 @@ class User < ActiveRecord::Base
 	presence: true,
 	length: { maximum: 20 }
 
-	validates :password_confirmation, presence: true
+	# validates :password_confirmation, 
+	# presence: true
 
 
 
