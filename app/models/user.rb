@@ -1,30 +1,37 @@
 class User < ActiveRecord::Base
+	has_many :post
+
 	validates :email,
 	# confirmation: true,
-	uniqueness: true,
-	presence: true # this needs to exist when user is created
+	# uniqueness: true,
+	uniqueness: {case_sensitive: false},
+	presence: true 
+	# this needs to exist when user is created
 	
 
-	# validates_uniqueness_of :email
-
-	# {case_sensitive: false} is not working
-	 # how unique do you want entry to be
-
-	validates_presence_of :password, on: :create
+  validates :password,
+  presence: true,
+  length: {
+    minimum: 8,
+    maximum: 99,
+    too_short: "must be greater than %{count} characters",
+    too_long: "must be less than %{count} characters"
+  },
+  confirmation: true,
+  on: :create
 
 	validates :name,
 	presence: true,
-	length: { maximum: 20 }
+	length: { maximum: 20, too_long: "must be less than %{count} letters" }
 
-	# validates :password_confirmation, 
-	# presence: true
+	validates :password_confirmation, 
+	presence: true
 
 
 
 # because we installed bcrypt, can use below. use in conjunction with password_digest
 	has_secure_password
 
-	has_many :post
 
 	# find user object with id
 	def self.authenticate email, password

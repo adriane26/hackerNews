@@ -32,6 +32,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'pry-rails', :group => :development
 gem 'bootstrap_form'
 gem 'gon'
+gem 'validate_url'
+gem 'email_validator'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

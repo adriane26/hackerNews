@@ -3,10 +3,17 @@ class Post < ActiveRecord::Base
 
   validates :title,
   presence: true,
-  length: { in: 10..100 }
+   length: {
+    minimum: 10,
+    maximum: 100,
+    too_short: "must be at least %{count} letters",
+    too_long: "must be less than %{count} letters"
+  }
 
   validates :link,
-  presence: true
+  presence: true,
+  url: true
+  
   # format: { with: @^(https?|ftp)://[^\s/$.?#].[^\s]*$@iS,
     # message: "must be valid url" }
 
