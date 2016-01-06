@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-   get 'posts/index'
 
+
+  # You can have the root of your site routed with "root"
+  root 'posts#index'
+   # get 'posts/index'
   # get 'posts/create'
+  resources :posts, only: [:new, :create, :show]
 
   # get 'sessions/new'
 
@@ -14,16 +18,17 @@ Rails.application.routes.draw do
   # get 'users/new'
 
   #first url, issue get request that will render template. => controller
-  get "/login" => "sessions#new"
-  post "/login" => "sessions#create"
-  get "/logout" => "sessions#destroy"
+  get "login" => "sessions#new"
+  post "login" => "sessions#create"
+  get "logout" => "sessions#destroy"
 
-  get "/signup" => "users#new"
-  post "/users" => "users#create"
+  get "signup" => "users#new"
+  post 'signup' => 'users#create'
+  post "users" => "users#create"
 
-  get "/" => "posts#index"  # do i need this one?
-  get "/posts/new" => "posts#new"
-  post "/posts" => "posts#create"
+  # get "/" => "posts#index"  # do i need this one?
+  get "posts/new" => "posts#new"
+  post "posts" => "posts#create"
 
 
   
@@ -32,7 +37,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'posts#index'
+   # root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	validates :email,
-	confirmation: true,
+	# confirmation: true,
 	uniqueness: true,
 	presence: true # this needs to exist when user is created
 	

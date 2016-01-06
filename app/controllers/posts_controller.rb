@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
 	
-	before_action :is_authenticated?
+	before_action :is_authenticated?, except: [:index]
 
   def index #homepage
   	@posts = Post.all
@@ -12,8 +12,8 @@ class PostsController < ApplicationController
   end
 
   def create
-  	Post.create post_params
-  	redirect_to posts_path
+  	post = Post.create post_params
+  	redirect_to root_path
   end
 
   private 

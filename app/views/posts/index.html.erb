@@ -1,10 +1,20 @@
+<% if @posts %>
+ 	<% @posts.each do |p| %>
+    	<div class="panel panel-default">
+     	 <div class="panel-body">
+       		 <%= p.title %><br><br>
+       		 <strong><%= p.link %></strong>
+     	 </div>
+    	</div>
 
- <% @posts.each do |p| %>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= p.title %><br><br>
-       <strong><%= p.link %></strong>
-      </div>
-    </div>
+	<%= link_to 'New Link', new_post_path, :class => 'btn btn-primary' %>
+	<% end %>
+	<% else %>
+
+  <%= link_to 'New Link', 'posts/new', :class => 'btn btn-primary' %>
 <% end %>
-<%= link_to 'New Link', 'posts/new', :class => 'btn btn-primary' %>
+
+
+	<!--%= link_to 'New Link', 'posts/new', :class => 'btn btn-primary' %-->
+
+<!-- %= link_to 'New Creature', new_creature_path %-->
